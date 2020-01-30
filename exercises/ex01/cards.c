@@ -81,5 +81,6 @@ int main()
 
 /*compile with flag errors.
 the use of // for comments is not allowed
-flag required me to change the location of a variable declaration because I declared variables within the do loop
+flag required me to change the location of a variable declaration 
+because I declared variables within the do loop.
 */
