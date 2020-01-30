@@ -1,3 +1,11 @@
+    /* hello.c
+      Author: Samantha Young
+      Year: 1/28/20
+      Class: Software Systems Spring 20
+      Script stores int and prints it.
+      License:
+    */
+
 #include <stdio.h>
 
 int main() {
