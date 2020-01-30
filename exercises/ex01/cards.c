@@ -2,7 +2,8 @@
       Author: Samantha Young
       Year: 1/28/20
       Class: Software Systems Spring 20
-      The script displays the count of each card and ends the program if the player types X
+      The script displays the count of each card and ends 
+      the program if the player types X
       License:
     */
 #include <stdio.h>
@@ -31,7 +32,8 @@ int update_count_value(int val, int count){
   return count;
 }
 
-/* Determines if user input is a character that is countable by the program.
+/* Determines if user input is a character that is countable 
+   by the program.
   val: integer value of the current card
 */
 void is_val_not_in_range(int val){
@@ -40,7 +42,8 @@ void is_val_not_in_range(int val){
     }
   }
 
-  /* Determines what count is corresponds to the card a user played
+  /* Determines what count is corresponds to the card a 
+    user played
     card_name: buffer where card name is stored
     val: integar value of the card that was played
   */
