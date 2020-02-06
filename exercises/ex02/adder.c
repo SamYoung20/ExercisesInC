@@ -13,10 +13,18 @@
 
 #define SIZE 5
 
+/* reads in user input and stores it in buffer
+  num: buffer where user input is stored
+*/
+
 void get_ints(char *num){
   puts("Enter integer 0 - 9999: ");
   scanf("%4s", num);
 }
+
+/* Accumulates sum and prints output
+  all_num: array of numbers to sum
+*/
 
 void print_sum(int *all_num){
   int sum = 0;
