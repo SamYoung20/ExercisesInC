@@ -8,6 +8,7 @@ License: GNU GPLv3
 #include <stdio.h>
 #include <stdlib.h>
 
+
 int var1;
 void print_addr(int variable){
   printf ("Address of local variable is %p\n", &variable);

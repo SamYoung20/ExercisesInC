@@ -2,7 +2,7 @@
       Author: Samantha Young
       Year: 1/28/20
       Class: Software Systems Spring 20
-      The script displays the count of each card and ends 
+      The script displays the count of each card and ends
       the program if the player types X
       License:
     */
@@ -14,7 +14,7 @@
    prompt: string prompt to display
    card_name: buffer where result is stored
 */
-void get_card_name(char *prompt, char *card_name){
+void get_card_name(char *card_name){
   puts("Enter the card_name: ");
   scanf("%2s", card_name);
 }
@@ -32,7 +32,7 @@ int update_count_value(int val, int count){
   return count;
 }
 
-/* Determines if user input is a character that is countable 
+/* Determines if user input is a character that is countable
    by the program.
   val: integer value of the current card
 */
@@ -81,6 +81,6 @@ int main()
 
 /*compile with flag errors.
 the use of // for comments is not allowed
-flag required me to change the location of a variable declaration 
+flag required me to change the location of a variable declaration
 because I declared variables within the do loop.
 */
