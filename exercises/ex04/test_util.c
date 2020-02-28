@@ -18,26 +18,6 @@ License: Creative Commons Attribution-ShareAlike 3.0
 
 int tests_run = 0;
 
-static char *test1() {
-    int res = endswith("endswith", "swith");
-    char *message = "test1 failed: endswith(\"endswith\", \"swith\") should return 1";
-    mu_assert(message, res == 1);
-    return NULL;
-}
-
-static char *test2() {
-    int res = endswith("endswith", "ends");
-    char *message = "test2 failed: endswith(\"endswith\", \"ends\") should return 0";
-    mu_assert(message, res == 0);
-    return NULL;
-}
-
-static char *test3() {
-    int res = endswith("endswith", "offendswith");
-    char *message = "test3 failed: endswith(\"offendswith\", \"swith\") should return 0";
-    mu_assert(message, res == 0);
-    return NULL;
-}
 
 static char *test_util_1() {
     char *res = icmpcode_v4(1);
@@ -48,9 +28,6 @@ static char *test_util_1() {
 }
 
 static char * all_tests() {
-    mu_run_test(test1);
-    mu_run_test(test2);
-    mu_run_test(test3);
     mu_run_test(test_util_1);
     return NULL;
 }
