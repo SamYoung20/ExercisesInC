@@ -21,14 +21,31 @@ int tests_run = 0;
 
 static char *test_util_1() {
     char *res = icmpcode_v4(1);
-    char *message = "test3 failed:icmpcode(1) should return host unreachable";
+    char *message = "test1 failed:icmpcode(1) should return host unreachable";
     printf("result: %s\n", res);
     mu_assert(message, res == "host unreachable");
     return NULL;
 }
 
+static char *test_util_2() {
+    char *res = icmpcode_v4(0);
+    char *message = "test1 failed:icmpcode(0) should return network unreachable";
+    printf("result: %s\n", res);
+    mu_assert(message, res == "network unreachable");
+    return NULL;
+}
+static char *test_util_3() {
+    char *res = icmpcode_v4(200);
+    char *message = "test1 failed:icmpcode(0) should return [unknown code]";
+    printf("result: %s\n", res);
+    mu_assert(message, res == "[unknown code]");
+    return NULL;
+}
+
 static char * all_tests() {
     mu_run_test(test_util_1);
+    mu_run_test(test_util_2);
+    mu_run_test(test_util_3);
     return NULL;
 }
 
