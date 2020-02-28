@@ -11,6 +11,9 @@ License: Creative Commons Attribution-ShareAlike 3.0
 #include <assert.h>
 #include "endswith.h"
 #include "minunit.h"
+#include "util.h"
+#include "endswith.c"
+#include "util.c"
 
 
 int tests_run = 0;
@@ -36,10 +39,19 @@ static char *test3() {
     return NULL;
 }
 
+static char *test_util_1() {
+    char *res = icmpcode_v4(1);
+    char *message = "test3 failed:icmpcode(1) should return host unreachable";
+    printf("result: %s\n", res);
+    mu_assert(message, res == "host unreachable");
+    return NULL;
+}
+
 static char * all_tests() {
     mu_run_test(test1);
     mu_run_test(test2);
     mu_run_test(test3);
+    mu_run_test(test_util_1);
     return NULL;
 }
 
