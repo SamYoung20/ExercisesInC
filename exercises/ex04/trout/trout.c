@@ -103,6 +103,7 @@ int process_ip (struct ip *ip, int len)
       return 0;
     }
   }
+    return 0;
 }
 
 /* recv_dgram: reads all incoming datagrams and checks for
@@ -202,6 +203,7 @@ double time_to_double (Timeval *time)
 void print_report ()
 {
   int stat;
+  //double rtt;
   char str[NI_MAXHOST];
 
   stat = sock_cmp_addr (sarecv, salast, salen);
@@ -222,7 +224,7 @@ void print_report ()
   /* calculate and print the round trip time using user-level timestamps */
 
   sub_tv (recvtv, sendtv, difftv);
-  rtt = time_to_double (difftv);
+  //rtt = time_to_double (difftv);
 
   printf ("  %.3f", time_to_double (difftv));
 }
@@ -264,7 +266,7 @@ void send_dgram (int ttl)
 
 int send_probes (int ttl)
 {
-  int i, probe, code, done;
+  int probe, code, done;
 
   Setsockopt (sendfd, IPPROTO_IP, IP_TTL, &ttl, sizeof(int));
   bzero (salast, salen);

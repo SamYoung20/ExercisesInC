@@ -2,13 +2,13 @@
 # 	gcc -g -o trout main.c trout.c util.c
 
 util.o: util.c util.h
-	gcc -c util.c
+	gcc -c -Wall util.c
 
 trout.o: trout.c trout.h
-	gcc -c trout.c
+	gcc -c -Wall trout.c
 
 main.o: main.c trout.o util.o
-	gcc -c main.c
+	gcc -c -Wall main.c
 
 trout: main.o util.o trout.o
-	gcc main.o util.o trout.o -o trout
+	gcc -Wall main.o util.o trout.o -o trout

@@ -19,7 +19,7 @@ int main (int argc, char **argv)
       err_quit ("unrecognizd option: %c", c);
     }
   }
-
+  
   if (optind != argc - 1) {
     err_quit ("usage: trout [ -m <maxttl>] <hostname>");
   }
