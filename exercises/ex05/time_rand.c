@@ -14,7 +14,7 @@ License: MIT License https://opensource.org/licenses/MIT
 #include <unistd.h>
 #include "rand.h"
 
-//random_float is fastest at 829.521 ms
+
 
 /* Get the total of user time and system time used by this process.
 */
@@ -85,6 +85,7 @@ int main(int argc, char *argv[])
 }
 /*
 Time comparison
+random_float is fastest at 829.521 ms
 883.796000 ms 	 random_double
 2955.219000 ms 	 my_random_double
 
