@@ -33,6 +33,18 @@ returns: new array, caller must free
 */
 // TODO: Write this function
 
+double *get_int_part(double *dubs, int size_array){
+  double *result = malloc(size_array);
+  return result;
+}
+
+double *get_both_parts(double *dubs, int size_array, double **p){
+  double *result1 = malloc(size_array);
+  double *result2 = malloc(size_array);
+  *p = result2;
+  return result1;
+}
+
 void test_get_int_part()
 {
     double array[] = {1.2, 2.718, 3.1412, 5.6};

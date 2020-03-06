@@ -13,6 +13,7 @@ License: Creative Commons Attribution-ShareAlike 3.0
 #include "minunit.h"
 #include "trout/util.h"
 #include "endswith.c"
+#include "trout/util.c" // comment and uncomment this for the code to work
 
 
 int tests_run = 0;
@@ -22,7 +23,7 @@ static char *test_util_1() {
     char *res = icmpcode_v4(1);
     char *message = "test1 failed:icmpcode(1) should return host unreachable";
     printf("result: %s\n", res);
-    mu_assert(message, !strcmp(res,"host unreachable"));
+    mu_assert(message, res == "host unreachable");
     return NULL;
 }
 
@@ -30,14 +31,14 @@ static char *test_util_2() {
     char *res = icmpcode_v4(0);
     char *message = "test2 failed:icmpcode(0) should return network unreachable";
     printf("result: %s\n", res);
-    mu_assert(message, !strcmp(res,"network unreachable"));
+    mu_assert(message, res == "network unreachable");
     return NULL;
 }
 static char *test_util_3() {
     char *res = icmpcode_v4(200);
     char *message = "test3 failed:icmpcode(0) should return [unknown code]";
     printf("result: %s\n", res);
-    mu_assert(message, !strcmp(res,"[unknown code]"));
+    mu_assert(message, res == "[unknown code]");
     return NULL;
 }
 

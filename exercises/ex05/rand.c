@@ -5,6 +5,11 @@ License: MIT License https://opensource.org/licenses/MIT
 */
 
 #include <stdlib.h>
+#include <stdio.h>
+#include <stdint.h>
+#define __STDC_FORMAT_MACROS
+#include <inttypes.h>
+
 
 // generate a random float using the algorithm described
 // at http://allendowney.com/research/rand
@@ -78,8 +83,46 @@ float my_random_float2()
 // compute a random double using my algorithm
 double my_random_double()
 {
-    // TODO: fill this in
+  uint64_t mant;
+  uint64_t exp = 1024;
+  uint64_t mask = 1;
+
+  union {
+      uint64_t i;
+      double d;
+  } b;
+
+  // generate random 64 bit number
+  uint64_t new_num;
+  uint64_t first_32;
+  uint64_t second_32;
+  int last_2;
+  int last_1;
+    //generate random 64 bits until we see the first set bit
+  while (1) {
+  first_32 = random();
+  second_32 = random();
+  new_num = (first_32 << 32) | (second_32);
+      if (new_num == 0) {
+          exp -= 31;
+      } else {
+          break;
+      }
+  }
+
+  // find the location of the first set bit and compute the exponent
+  while (new_num & mask) {
+      mask <<= 1;
+      exp--;
+  }
+
+  // use the remaining bit as the mantissa
+  mant = new_num >> 11;
+
+  b.i = (exp << 52) | mant;
+  return b.d;
 }
+
 
 // return a constant (this is a dummy function for time trials)
 float dummy()
