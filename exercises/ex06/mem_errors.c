@@ -29,8 +29,8 @@ int main()
     int *array2 = malloc(100 * sizeof (int));
 
     // valgrind does not bounds-check static arrays
-    read_element(array1, 2);
-    read_element(array1, 2);
+    //read_element(array1, 2); // *****there is nothing to read, there are no elements in this array******
+    //read_element(array1, 2);
 
     // but it does bounds-check dynamic arrays
     read_element(array2, 2);
@@ -47,11 +47,13 @@ int main()
     // free(&never_allocated);
 
     // but this one doesn't
-    free_anything(&never_allocated);
+    free_anything(free_twice); //*******change from never allocated to literaly anything that is allocated******
 
-    free(free_twice);
-    //free(free_twice);
+  //  free(free_twice);
+    //free(free_twice); // ********cannot free things twice!!!************
     free(array2);
     free(never_free);
+    free(use_after_free);// ******need to free this memory that was allocated but never used**************
     return 0;
 }
+//
