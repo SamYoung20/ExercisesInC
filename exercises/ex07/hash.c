@@ -178,7 +178,7 @@ int hash_hashable(Hashable *hashable)
 */
 int equal_int (void *ip, void *jp)
 {
-    // FILL THIS IN!
+    if ((int*)ip == (int*)jp) return 1;
     return 0;
 }
 
@@ -192,7 +192,7 @@ int equal_int (void *ip, void *jp)
 */
 int equal_string (void *s1, void *s2)
 {
-    // FILL THIS IN!
+    if (strcmp((char*)s1, (char*)s2) == 0) return 1;
     return 0;
 }
 
@@ -201,13 +201,13 @@ int equal_string (void *s1, void *s2)
 *
 * h1: Hashable
 * h2: Hashable of the same type
-*
+*This function
 * returns: 1 if equal, 0 otherwise
 *
 */
 int equal_hashable(Hashable *h1, Hashable *h2)
 {
-    // FILL THIS IN!
+    if (h1->equal(h1, h2)) return 1;
     return 0;
 }
 
@@ -294,9 +294,15 @@ Node *prepend(Hashable *key, Value *value, Node *rest)
 
 
 /* Looks up a key and returns the corresponding value, or NULL */
+//loop through a linked list and compare the keys
+//singularly linked list and at each step compare the key in the node to
+//the parameter key
 Value *list_lookup(Node *list, Hashable *key)
 {
-    // FILL THIS IN!
+    while (list != NULL) {
+        if (list->key == key) return list->value;
+        list= list->next;
+    }
     return NULL;
 }
 
@@ -305,7 +311,7 @@ Value *list_lookup(Node *list, Hashable *key)
 
 typedef struct map {
     int n;
-    Node **lists;
+    Node **lists; // this points to a list of lists -> like a 2d Array
 } Map;
 
 
@@ -339,17 +345,41 @@ void print_map(Map *map)
 
 
 /* Adds a key-value pair to a map. */
+//map->list
+//
+
 void map_add(Map *map, Hashable *key, Value *value)
 {
-    // FILL THIS IN!
+  //Checks to see if key exists
+  int index = 0;
+  index = hash_hashable(key)%map->n;
+
+  //searches through list at that unique index
+  //if key already exists save the list associated with that key
+  Node *existing_key = map->lists[index];
+
+  //place new pair at key index
+  if(existing_key == NULL){
+    map->lists[index] = make_node(key,value, NULL);
+    printf("made a node\n");
+  }
+  else{
+    map->lists[index] = prepend(key, value, existing_key);
+    printf("added a node \n");
+  }
+
 }
 
 
 /* Looks up a key and returns the corresponding value, or NULL. */
 Value *map_lookup(Map *map, Hashable *key)
 {
-    // FILL THIS IN!
-    return NULL;
+    //find unique index using (key%map->n);
+  int index = 0;
+  index = hash_hashable(key)%map->n;
+  //searches through list at that unique index
+  Node *list = map->lists[index];
+  return list_lookup(list, key);
 }
 
 
