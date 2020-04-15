@@ -67,6 +67,7 @@ int main(int argc, char *argv[])
         }
     }
     /* parent continues */
+    //waiting and error handling
     printf("Parent Waiting.\n");
 
     for (i=0; i<num_feeds; i++) {
@@ -88,5 +89,5 @@ int main(int argc, char *argv[])
 /*
 Why did it terminate: The exec() funciton replaces the current running process.
 It terminated the other processes. The program ended the first time execle was
-called and did not recah the other news articles.
+called and did not reach the other news articles.
 */
