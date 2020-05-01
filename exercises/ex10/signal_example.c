@@ -17,8 +17,10 @@ Based on an example in Head First C.
 #include <string.h>
 #include <errno.h>
 #include <signal.h>
+#include <stdbool.h>
 
 int score = 0;
+bool timeUp = false;
 
 /* Set up a signal handler.
 
@@ -44,8 +46,9 @@ void end_game(int sig)
 /* Signal handler: Notify the user and raise SIGINT.
 */
 void times_up(int sig) {
-    puts("\nTIME'S UP!");
-    raise(SIGINT);
+    puts("\nTIME'S UP! Finish your question");
+    timeUp = true;
+    //raise(SIGINT);
 }
 
 int main(void) {
@@ -82,6 +85,9 @@ int main(void) {
             printf("\nWrong!\n");
         }
         printf("Score: %i\n", score);
+        if(timeUp){
+          end_game(0);
+        }
     }
     return 0;
 }
